@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.website.dao.WebStatsMapper">
+    <insert id="save">
+        INSERT INTO web_stats(ip,city,visitTime,stayTime)
+        VALUES (#{ip},#{city},#{visitTime},#{stayTime})
+    </insert>
+
+    <select id="findAll" resultType="com.website.entity.WebStats">
+        SELECT * FROM web_stats
+    </select>
+
+    <select id="findByIp" resultType="com.website.entity.WebStats">
+        SELECT * FROM web_stats WHERE ip= #{ip}
+    </select>
+</mapper>
