@@ -46,6 +46,7 @@ public class WebsiteFilter implements Filter{
         //如果ipmap中不包含此ip 则保存到数据库
         if(!ipMap.containsKey(ipAddress)){
             setwebStats(ipAddress);
+            //不同的ip 保存不同的访问量
             ipMap.put(ipAddress,1);
         }else {
             //统计此ip的访问量

@@ -7,7 +7,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 
 @SpringBootApplication
 @MapperScan("com.website.dao")
-@ServletComponentScan
+//@ServletComponentScan
 public class WebsiteApplication {
 
 	public static void main(String[] args) {

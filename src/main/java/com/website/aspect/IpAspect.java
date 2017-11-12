@@ -22,7 +22,7 @@ import java.util.*;
  */
 @Aspect
 @Slf4j
-//@Component
+@Component
 public class IpAspect {
 
     @Autowired
@@ -52,12 +52,17 @@ public class IpAspect {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         String ipAddress = IPAddrUtil.getIpAddr(request);
-        request.getSession();
+
 
         //如果map中不包含该ip 则添加
         if(!map.containsKey(ipAddress)){
             setWebStats(ipAddress);
             webStatsService.save(webStats);
+            log.info("保存到数据库");
+            map.put(ipAddress,1);
+        }else {
+            Integer count =  map.get(ipAddress);
+            map.put(ipAddress,count+1);
         }
 
         //如果list不包含该url则添加
@@ -65,8 +70,8 @@ public class IpAspect {
             list.add(request.getRequestURL().toString());
         }
         log.info("map={}",map.size());
-        log.info("lsit.size={},content={}",list.size(),list.toString());
-
+        log.info("list.size={},content={}",list.size(),list.toString());
+        log.info("count = {}",map.get(ipAddress));
     }
 
     public void setWebStats(String ipAddress){
