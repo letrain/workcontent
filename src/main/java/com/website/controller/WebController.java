@@ -1,6 +1,5 @@
 package com.website.controller;
 
-import com.website.utils.IP2Util;
 import com.website.utils.IPAddrUtil;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
